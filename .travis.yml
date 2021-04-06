@@ -12,3 +12,4 @@ script:
     - mix format --check-formatted --dry-run
     - mix credo --strict
     - mix sobelow --config
+    - mix coveralls.json
