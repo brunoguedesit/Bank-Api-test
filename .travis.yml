@@ -6,6 +6,8 @@ otp_release:
     - '23.1.2'
 services:
     - postgresql
+before_install:
+    - chmod +x deploy.sh
 before_script:
     - cp config/database.yml.travis config/database.yml
 script:
@@ -13,5 +15,12 @@ script:
     - mix credo --strict
     - mix sobelow --config
     - mix coveralls.json
+    - mix test && ./deploy.sh
 after_success:
     - bash <(curl -s https://codecov.io/bash)
+deploy:
+    skip_cleanup: true
+    provider: script
+    script: bash ./deploy.sh
+    on:
+        branch: main
