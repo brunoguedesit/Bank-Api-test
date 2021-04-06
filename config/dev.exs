@@ -5,7 +5,7 @@ config :stone_bank, StoneBank.Repo,
   username: "postgres",
   password: "postgres",
   database: "stone_bank_dev",
-  hostname: "localhost",
+  hostname: "database",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
