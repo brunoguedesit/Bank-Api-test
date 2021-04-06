@@ -2,14 +2,14 @@
 
 ## Unreleasead
 
-## [0.0.3] - 2021-04-06
+## [0.0.4] - 2021-04-06
 ### Added
 
-- add create_user migration
-- add comeonin dependency
+- add create_account_user migration
+- add moneydependency
 - add argon2 dependency
-- add user schema
-- add changeset for schema user
+- add account schema
+- add changeset for schema account
 
 ### Changed
 

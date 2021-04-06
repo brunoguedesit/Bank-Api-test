@@ -75,7 +75,8 @@ defmodule StoneBank.MixProject do
       {:junit_formatter, "~> 2.1", only: :test},
       {:ex_doc, "~> 0.21", only: :dev, runtime: false},
       {:comeonin, "~> 4.1"},
-      {:argon2_elixir, "~> 1.3"}
+      {:argon2_elixir, "~> 1.3"},
+      {:money, "~> 1.8"}
     ]
   end
 
