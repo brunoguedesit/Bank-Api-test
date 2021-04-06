@@ -1,5 +1,7 @@
 # StoneBank
 
+[![Build Status](https://travis-ci.com/brunoguedesit/stone_bank.svg?token=ywpRyjxy3UtUGfJLcssT&branch=main)](https://travis-ci.com/brunoguedesit/stone_bank)
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
