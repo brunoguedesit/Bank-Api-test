@@ -1,0 +1,5 @@
+test:
+	  adapter: postgresql
+	  database: stone_bank_test
+	  		username: "postgres",
+			password: "postgres",

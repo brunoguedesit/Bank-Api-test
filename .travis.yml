@@ -4,6 +4,10 @@ elixir:
     - '1.11.4'
 otp_release:
     - '23.1.2'
+services:
+    - postgresql
+before_script:
+    - cp config/database.yml.travis config/database.yml
 script:
     - mix format --check-formatted --dry-run
     - mix credo --strict
