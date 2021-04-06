@@ -6,3 +6,4 @@ otp_release:
     - '23.1.2'
 script:
     - mix format --check-formatted --dry-run
+    - mix credo --strict

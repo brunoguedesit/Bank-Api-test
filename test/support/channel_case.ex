@@ -15,6 +15,8 @@ defmodule StoneBankWeb.ChannelCase do
   this option is not recommended for other databases.
   """
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   use ExUnit.CaseTemplate
 
   using do
@@ -29,10 +31,10 @@ defmodule StoneBankWeb.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(StoneBank.Repo)
+    :ok = Sandbox.checkout(StoneBank.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(StoneBank.Repo, {:shared, self()})
+      Sandbox.mode(StoneBank.Repo, {:shared, self()})
     end
 
     :ok

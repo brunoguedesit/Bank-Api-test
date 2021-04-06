@@ -15,6 +15,8 @@ defmodule StoneBankWeb.ConnCase do
   this option is not recommended for other databases.
   """
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   use ExUnit.CaseTemplate
 
   using do
@@ -32,10 +34,10 @@ defmodule StoneBankWeb.ConnCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(StoneBank.Repo)
+    :ok = Sandbox.checkout(StoneBank.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(StoneBank.Repo, {:shared, self()})
+      Sandbox.mode(StoneBank.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
