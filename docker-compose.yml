@@ -1,0 +1,24 @@
+version: '3'
+services:
+  stone_bank:
+    container_name: stone_bank
+    build: .
+    command: /bin/bash docker_start.sh
+    volumes:
+      - .:/stone_bank
+    ports:
+      - "4000:4000"
+    links:
+      - database
+  database:
+    container_name: database
+    image: postgres
+    restart: always
+    volumes:
+      - "./volumes/datadir:/var/lib/postgres"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: stone_bank_dev
+      POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"
