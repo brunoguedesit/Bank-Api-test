@@ -3,6 +3,8 @@ defmodule StoneBank.MixProject do
     Dependency manager
   """
 
+  @github_url "https://github.com/brunoguedesit/stone_bank"
+
   use Mix.Project
 
   def project do
@@ -10,6 +12,16 @@ defmodule StoneBank.MixProject do
       app: :stone_bank,
       version: "0.1.0",
       elixir: "~> 1.11.4",
+      source_url: @github_url,
+      homepage_url: @github_url,
+      files: ~w(mix.exs lib LICENSE.md README.md CHANGELOG.md),
+      package: [
+        maintainers: ["Bruno Guedes"],
+        licenses: ["MIT"],
+        links: %{
+          "GitHub" => @github_url
+        }
+      ],
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -60,7 +72,8 @@ defmodule StoneBank.MixProject do
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
       {:sobelow, "~> 0.8"},
       {:excoveralls, "~> 0.10", only: :test},
-      {:junit_formatter, "~> 2.1", only: :test}
+      {:junit_formatter, "~> 2.1", only: :test},
+      {:ex_doc, "~> 0.21", only: :dev, runtime: false}
     ]
   end
 
