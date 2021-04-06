@@ -73,7 +73,9 @@ defmodule StoneBank.MixProject do
       {:sobelow, "~> 0.8"},
       {:excoveralls, "~> 0.10", only: :test},
       {:junit_formatter, "~> 2.1", only: :test},
-      {:ex_doc, "~> 0.21", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.21", only: :dev, runtime: false},
+      {:comeonin, "~> 4.1"},
+      {:argon2_elixir, "~> 1.3"}
     ]
   end
 
