@@ -59,7 +59,8 @@ defmodule StoneBank.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
       {:sobelow, "~> 0.8"},
-      {:excoveralls, "~> 0.10", only: :test}
+      {:excoveralls, "~> 0.10", only: :test},
+      {:junit_formatter, "~> 2.1", only: :test}
     ]
   end
 
