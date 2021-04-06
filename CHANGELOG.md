@@ -2,15 +2,13 @@
 
 ## Unreleasead
 
-## [0.0.1] - 2021-04-06
+## [0.0.2] - 2021-04-06
 ### Added
 
-- travisci settings
-- changelog file
-- license file
+- route for signup
+- user controller
+- user view
 
 ### Changed
-
-test helper
 
 ### Removed

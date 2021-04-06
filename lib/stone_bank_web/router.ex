@@ -13,6 +13,12 @@ defmodule StoneBankWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api", StoneBankWeb do
+    pipe_through :api
+
+    post "auth/signup", UserController, :signup
+  end
+
   scope "/", StoneBankWeb do
     pipe_through :browser
 
