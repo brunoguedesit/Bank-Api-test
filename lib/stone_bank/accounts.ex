@@ -7,24 +7,24 @@ defmodule StoneBank.Accounts do
   alias StoneBank.Repo
 
   def create_user(params \\ %{}) do
-    case insert_user(params) do
-      {:ok, user} ->
-        {:ok, account} =
-          user
-          |> Ecto.build_assoc(:accounts)
-          |> Account.changeset()
-          |> Repo.insert()
+    transaction =
+      Ecto.Multi.new()
+      |> Ecto.Multi.insert(:user, insert_user(params))
+      |> Ecto.Multi.insert(:account, fn %{user: user} ->
+        user
+        |> Ecto.build_assoc(:accounts)
+        |> Account.changeset()
+      end)
+      |> Repo.transaction()
 
-        {:ok, account |> Repo.preload(:user)}
-
-      {:error, changeset} ->
-        {:error, changeset}
+    case transaction do
+      {:ok, operations} -> {:ok, operations.user, operations.account}
+      {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
 
   defp insert_user(params) do
     %User{}
     |> User.changeset(params)
-    |> Repo.insert()
   end
 end
