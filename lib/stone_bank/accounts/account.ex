@@ -9,7 +9,8 @@ defmodule StoneBank.Accounts.Account do
   @foreign_key_type Ecto.UUID
 
   schema "accounts" do
-    field :amount, Money.Ecto.Amount.Type, default_currency: :BRL, default: 1000
+    field :amount, Money.Ecto.Amount.Type, default: 1000
+    field :currency, Money.Currency.Ecto.Type, default: :BRL
     belongs_to :user, StoneBank.Accounts.User
 
     timestamps()
