@@ -2,14 +2,10 @@
 
 ## Unreleasead
 
-## [0.0.4] - 2021-04-06
+## [0.0.5] - 2021-04-07
 ### Added
 
-- add create_account_user migration
-- add moneydependency
-- add argon2 dependency
-- add account schema
-- add changeset for schema account
+- add module accounts to create user accounts at database
 
 ### Changed
 
