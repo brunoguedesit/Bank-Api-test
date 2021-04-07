@@ -19,6 +19,8 @@ defmodule StoneBank.Accounts.User do
     field :password_hash, :string
     field :role, :string, default: "user"
 
+    has_one :accounts, StoneBank.Accounts.Account
+
     timestamps()
   end
 
