@@ -2,11 +2,13 @@ defmodule StoneBankWeb.UserController do
   use StoneBankWeb, :controller
   alias StoneBank.Accounts
 
-  def signup(conn, %{"user" => user}) do
-    {:ok, user, account} = Accounts.create_user(user)
+  action_fallback StoneBankWeb.FallbackController
 
-    conn
-    |> put_status(:created)
-    |> render("account.json", %{user: user, account: account})
+  def signup(conn, %{"user" => user}) do
+    with {:ok, user, account} <- Accounts.create_user(user) do
+      conn
+      |> put_status(:created)
+      |> render("account.json", %{user: user, account: account})
+    end
   end
 end

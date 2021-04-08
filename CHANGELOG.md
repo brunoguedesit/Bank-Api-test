@@ -2,14 +2,14 @@
 
 ## Unreleasead
 
-## [0.0.8] - 2021-04-07
+## [0.0.9] - 2021-04-08
 ### Added
 
-- add param user at pattern matching to load the account
+- add fallback_controller to handling errors
+- add changeset_view for json response
 
 ### Changed
 
-- refactor(user_view) add currency into response
-- refactor(account migration/schema) add field currency
+- refactor(user_controller) add action_fallback and with for signup
 
 ### Removed
