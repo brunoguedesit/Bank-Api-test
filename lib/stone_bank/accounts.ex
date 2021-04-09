@@ -27,4 +27,6 @@ defmodule StoneBank.Accounts do
     %User{}
     |> User.changeset(params)
   end
+
+  def get!(id), do: Repo.get(Account, id)
 end
