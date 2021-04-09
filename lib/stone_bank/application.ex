@@ -9,6 +9,8 @@ defmodule StoneBank.Application do
     children = [
       # Start the Ecto repository
       StoneBank.Repo,
+      # Start the Cldr currency
+      Cldr.Currency,
       # Start the Telemetry supervisor
       StoneBankWeb.Telemetry,
       # Start the PubSub system

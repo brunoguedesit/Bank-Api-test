@@ -76,7 +76,9 @@ defmodule StoneBank.MixProject do
       {:ex_doc, "~> 0.21", only: :dev, runtime: false},
       {:comeonin, "~> 4.1"},
       {:argon2_elixir, "~> 1.3"},
-      {:money, "~> 1.8"}
+      {:ex_money, "~> 5.0"},
+      {:ex_money_sql, "~> 1.0"},
+      {:ex_cldr, "~> 2.20"}
     ]
   end
 

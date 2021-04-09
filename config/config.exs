@@ -7,6 +7,12 @@
 # General application configuration
 use Mix.Config
 
+config :ex_money,
+  default_cldr_backend: StoneBank.Cldr
+
+config :ex_cldr,
+  json_library: Jason
+
 config :stone_bank,
   ecto_repos: [StoneBank.Repo]
 

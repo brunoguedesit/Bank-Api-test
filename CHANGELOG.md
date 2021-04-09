@@ -2,14 +2,15 @@
 
 ## Unreleasead
 
-## [0.0.10] - 2021-04-08
+## [0.0.11] - 2021-04-08
 ### Added
 
-- add route operations/transfer
-- add operation_controller to make transfers
-- add operation_view for json response
+- add cldr dependency
+- add ex_money dependency for ISO 4217
+- add ex_money_sql dependency for custom type at migration and schema
 
 ### Changed
 
-
 ### Removed
+
+- removed dependency money
