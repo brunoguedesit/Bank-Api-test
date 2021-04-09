@@ -18,24 +18,26 @@ defmodule StoneBank.Operations do
 
   defp is_negative_amount(from_amount, value) do
     {:ok, %Money{currency: _, amount: value_in_money}} = Money.sub(from_amount, value)
-     Decimal.negative?(value_in_money)
+    Decimal.negative?(value_in_money)
   end
 
   defp perform_update(from, t_id, value) do
     {:ok, from} = perform_operation(from, value, :sub)
+
     {:ok, to} =
       Accounts.get!(t_id)
       |> perform_operation(value, :sum)
+
     {:ok, "Transfer with sucess!! from: #{from.id} to: #{to.id} value: #{value}"}
   end
 
   defp perform_operation(account, value, :sub) do
-    {:ok, value_response_sub } = Money.sub(account.amount, value)
+    {:ok, value_response_sub} = Money.sub(account.amount, value)
     update_account(account, %{amount: value_response_sub})
   end
 
   defp perform_operation(account, value, :sum) do
-    {:ok, value_response_sum } = Money.add(account.amount, value)
+    {:ok, value_response_sum} = Money.add(account.amount, value)
     update_account(account, %{amount: value_response_sum})
   end
 

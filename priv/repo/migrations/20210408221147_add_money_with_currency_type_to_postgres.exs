@@ -1,4 +1,7 @@
 defmodule StoneBank.Repo.Migrations.AddMoneyWithCurrencyTypeToPostgres do
+  @moduledoc """
+    Custom type of money migration
+  """
   use Ecto.Migration
 
   def up do
