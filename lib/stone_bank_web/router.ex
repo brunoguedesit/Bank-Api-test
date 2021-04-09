@@ -18,6 +18,7 @@ defmodule StoneBankWeb.Router do
 
     post "auth/signup", UserController, :signup
     put "/operations/transfer", OperationController, :transfer
+    put "/operations/withdraw", OperationController, :withdraw
   end
 
   scope "/", StoneBankWeb do

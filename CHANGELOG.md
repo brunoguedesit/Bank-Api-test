@@ -2,11 +2,11 @@
 
 ## Unreleasead
 
-## [0.0.13] - 2021-04-09
+## [0.0.14] - 2021-04-09
 ### Added
 
-- add a new type of handling erros using a message
-- add a new type of json response to errors with a message
+- add operations/withdraw route
+- add withdraw def at operation controller
 
 ### Changed
 
