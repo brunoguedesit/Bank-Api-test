@@ -16,9 +16,14 @@ defmodule StoneBankWeb.Router do
   scope "/api", StoneBankWeb do
     pipe_through :api
 
-    post "auth/signup", UserController, :signup
+    post "/auth/signup", UserController, :signup
     put "/operations/transfer", OperationController, :transfer
     put "/operations/withdraw", OperationController, :withdraw
+
+    get "/transactions/all", TransactionController, :all
+    get "/transactions/year/:year", TransactionController, :year
+    get "/transactions/year/:year/month/:month", TransactionController, :month
+    get "/transactions/day/:day", TransactionController, :day
   end
 
   scope "/", StoneBankWeb do

@@ -2,10 +2,12 @@
 
 ## Unreleasead
 
-## [0.0.16] - 2021-04-09
+## [0.0.17] - 2021-04-09
 ### Added
 
-- add transaction migration and schema
+- add transactions routes
+- add transaction_controller
+- add transaction_view
 
 ### Changed
 
