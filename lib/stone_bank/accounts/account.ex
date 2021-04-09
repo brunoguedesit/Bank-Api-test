@@ -9,8 +9,7 @@ defmodule StoneBank.Accounts.Account do
   @foreign_key_type Ecto.UUID
 
   schema "accounts" do
-    field :amount, Money.Ecto.Amount.Type, default: 1000
-    field :currency, Money.Currency.Ecto.Type, default: :BRL
+    field :amount, Money.Ecto.Composite.Type, default: Money.new(:BRL, 1000)
     belongs_to :user, StoneBank.Accounts.User
 
     timestamps()
@@ -19,6 +18,5 @@ defmodule StoneBank.Accounts.Account do
   def changeset(account, params \\ %{}) do
     account
     |> cast(params, [:amount])
-    |> validate_required(:amount)
   end
 end

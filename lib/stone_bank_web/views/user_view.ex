@@ -3,8 +3,7 @@ defmodule StoneBankWeb.UserView do
 
   def render("account.json", %{user: user, account: account}) do
     %{
-      amount: account.amount,
-      currency: account.currency,
+      balance: account.amount,
       account_id: account.id,
       user: %{
         email: user.email,
