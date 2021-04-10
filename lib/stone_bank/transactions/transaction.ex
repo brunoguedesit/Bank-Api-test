@@ -9,7 +9,7 @@ defmodule StoneBank.Transactions.Transaction do
   @primary_key {:id, Ecto.UUID, autogenerate: true}
   @required_params [:value, :account_from, :account_to, :type, :date]
 
-  schema "Transactions" do
+  schema "transactions" do
     field :account_from, :string
     field :account_to, :string
     field :date, :date
