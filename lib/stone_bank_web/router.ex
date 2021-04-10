@@ -17,6 +17,7 @@ defmodule StoneBankWeb.Router do
     pipe_through :api
 
     post "/auth/signup", UserController, :signup
+    post "/auth/signin", UserController, :signin
     get "/user", UserController, :show
     get "/users", UserController, :index
 
