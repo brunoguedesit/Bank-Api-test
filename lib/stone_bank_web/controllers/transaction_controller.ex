@@ -9,10 +9,13 @@ defmodule StoneBankWeb.TransactionController do
   end
 
   def year(conn, %{"year" => year}) do
+    year = String.to_integer(year)
     render(conn, "show.json", transaction: Transactions.year(year))
   end
 
   def month(conn, %{"year" => year, "month" => month}) do
+    year = String.to_integer(year)
+    month = String.to_integer(month)
     render(conn, "show.json", transaction: Transactions.month(year, month))
   end
 
