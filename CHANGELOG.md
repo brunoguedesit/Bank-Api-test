@@ -2,13 +2,17 @@
 
 ## Unreleasead
 
-## [0.0.22] - 2021-04-10
+## [0.0.23] - 2021-04-10
 ### Added
 
-- add signin route
-- add signin def at user_controller
-- add user_auth for json response
+- add guardian pipeline
+- add guardian error_handler
+- add the pipeline into routes and set the routes who needs authenticate
 
 ### Changed
 
+- refactor(config): correcting the module name
+
 ### Removed
+
+- removed deps unused into mix.lock file

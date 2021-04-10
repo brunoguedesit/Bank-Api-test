@@ -13,11 +13,18 @@ defmodule StoneBankWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", StoneBankWeb do
-    pipe_through :api
+  pipeline :auth do
+    plug StoneBank.Accounts.Auth.Pipeline
+  end
 
-    post "/auth/signup", UserController, :signup
-    post "/auth/signin", UserController, :signin
+  scope "/api/auth", StoneBankWeb do
+    post "/signup", UserController, :signup
+    post "/signin", UserController, :signin
+  end
+
+  scope "/api", StoneBankWeb do
+    pipe_through [:api, :auth]
+
     get "/user", UserController, :show
     get "/users", UserController, :index
 

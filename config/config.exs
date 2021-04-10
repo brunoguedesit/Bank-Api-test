@@ -7,7 +7,7 @@
 # General application configuration
 use Mix.Config
 
-config :stone_bank, StoneBank.Accounts.Auth.Gauardian,
+config :stone_bank, StoneBank.Accounts.Auth.Guardian,
   issuer: "stone_bank",
   secret_key: System.get_env("GUARDIAN_SECRET")
 

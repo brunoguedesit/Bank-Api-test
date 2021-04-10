@@ -3,7 +3,6 @@ defmodule StoneBank.Accounts.Auth.Guardian do
     Module guardian to get a jwt authenticate
   """
   use Guardian, otp_app: :stone_bank
-
   alias StoneBank.Accounts
   alias StoneBank.Accounts.Auth.Session
 
