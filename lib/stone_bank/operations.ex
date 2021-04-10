@@ -10,24 +10,19 @@ defmodule StoneBank.Operations do
   alias StoneBank.Repo
   alias StoneBank.Transactions.Transaction
 
-  def withdraw(f_id, value) do
-    from = Accounts.get!(f_id)
+  def withdraw(from, value) do
     value = Money.new(:brl, value)
 
-    validate_negative(from.amount, value, withdraw_operation(from, value))
-  end
-
-  defp validate_negative(amount, value, operation) do
-    case is_negative_amount(amount, value) do
+    case is_negative_amount?(from.amount, value) do
       true ->
         {:error, "you can't have negative amount!"}
 
       false ->
-        operation
+        withdraw_operation(from, value)
     end
   end
 
-  defp withdraw_operation(from, value) do
+  def withdraw_operation(from, value) do
     Ecto.Multi.new()
     |> Ecto.Multi.update(:account_from, perform_operation(from, value, :sub))
     |> Ecto.Multi.insert(:transaction, gen_transaction(value, from.id, nil, @withdraw))
@@ -35,14 +30,16 @@ defmodule StoneBank.Operations do
     |> transaction_case("Withdraw with success!!! from: #{from.id} value: #{value}")
   end
 
-  def transfer(f_id, t_id, value) do
-    from = Accounts.get!(f_id)
+  def transfer(from, t_id, value) do
     value = Money.new(:brl, value)
 
-    validate_negative(from.amount, value, perform_update(from, t_id, value))
+    case is_negative_amount?(from.amount, value) do
+      true -> {:error, "you can't have negative amount!"}
+      false -> perform_update(from, t_id, value)
+    end
   end
 
-  defp is_negative_amount(from_amount, value) do
+  defp is_negative_amount?(from_amount, value) do
     {:ok, %Money{currency: _, amount: value_in_money}} = Money.sub(from_amount, value)
     Decimal.negative?(value_in_money)
   end
