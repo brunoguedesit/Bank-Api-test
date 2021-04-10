@@ -2,11 +2,13 @@
 
 ## Unreleasead
 
-## [0.0.21] - 2021-04-10
+## [0.0.22] - 2021-04-10
 ### Added
 
-### Changed
+- add guardian dependency
+- add guardian and session module for jwt authenticate
+- add guardian config
 
-- refactor(operations): add a transaction with Ecto.Multi to insert the operations into transactions table
+### Changed
 
 ### Removed

@@ -7,6 +7,10 @@
 # General application configuration
 use Mix.Config
 
+config :stone_bank, StoneBank.Accounts.Auth.Gauardian,
+  issuer: "stone_bank",
+  secret_key: System.get_env("GUARDIAN_SECRET")
+
 config :ex_money,
   default_cldr_backend: StoneBank.Cldr
 
