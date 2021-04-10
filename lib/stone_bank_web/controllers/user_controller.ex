@@ -4,6 +4,7 @@ defmodule StoneBankWeb.UserController do
   alias StoneBank.Accounts.Auth.Guardian
 
   action_fallback StoneBankWeb.FallbackController
+  plug :verify_permission when action in [:show, :index]
 
   def signup(conn, %{"user" => user}) do
     with {:ok, user, account} <- Accounts.create_user(user) do
@@ -32,5 +33,17 @@ defmodule StoneBankWeb.UserController do
 
     conn
     |> render("show.json", %{user: user})
+  end
+
+  defp verify_permission(conn, _) do
+    user = Guardian.Plug.current_resource(conn)
+
+    if user.role == "admin" do
+      conn
+    else
+      conn
+      |> put_status(401)
+      |> json(%{error: "unauthorized"})
+    end
   end
 end

@@ -3,6 +3,7 @@ defmodule StoneBankWeb.TransactionController do
   alias StoneBank.Transactions
 
   action_fallback StoneBankWeb.FallbackController
+  plug :verify_permission when action in [:all, :year, :month, :day]
 
   def all(conn, _) do
     render(conn, "show.json", transaction: Transactions.all())
@@ -21,5 +22,17 @@ defmodule StoneBankWeb.TransactionController do
 
   def day(conn, %{"day" => day}) do
     render(conn, "show.json", transaction: Transactions.day(day))
+  end
+
+  defp verify_permission(conn, _) do
+    user = Guardian.Plug.current_resource(conn)
+
+    if user.role == "admin" do
+      conn
+    else
+      conn
+      |> put_status(401)
+      |> json(%{error: "unauthorized"})
+    end
   end
 end
