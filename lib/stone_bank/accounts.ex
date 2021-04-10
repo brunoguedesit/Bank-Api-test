@@ -28,5 +28,9 @@ defmodule StoneBank.Accounts do
     |> User.changeset(params)
   end
 
+  def get_user!(id), do: Repo.get(User, id) |> Repo.preload(:accounts)
+
+  def get_users, do: Repo.all(User) |> Repo.preload(:accounts)
+
   def get!(id), do: Repo.get(Account, id)
 end
