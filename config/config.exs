@@ -12,6 +12,18 @@ config :stone_bank, StoneBank.Accounts.Auth.Guardian,
   secret_key: System.get_env("GUARDIAN_SECRET")
 
 config :ex_money,
+  auto_start_exchange_rate_service: true,
+  open_exchange_rates_app_id: "9e2654ed6bde48c1a1725da9c678d2f0",
+  exchange_rates_retrieve_every: 300_000,
+  api_module: Money.ExchangeRates.OpenExchangeRates,
+  callback_module: Money.ExchangeRates.Callback,
+  exchange_rates_cache_module: Money.ExchangeRates.Cache.Ets,
+  preload_historic_rates: nil,
+  retriever_options: nil,
+  log_failure: :warn,
+  log_info: :info,
+  log_success: nil,
+  json_library: Jason,
   default_cldr_backend: StoneBank.Cldr
 
 config :ex_cldr,

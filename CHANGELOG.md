@@ -2,12 +2,13 @@
 
 ## Unreleasead
 
-## [0.0.24] - 2021-04-10
+## [0.0.25] - 2021-04-10
 ### Added
 
-### Changed
+- add exchange route
+- add ex_money config to do the exchange currency
+- add exchange function into operation module, controller and view
 
-- refactor(operation): fix the negative amount bug with the validate_negative function
-- refactor(operation/controller): removed the argument from to use jwt token authenticate
+### Changed
 
 ### Removed

@@ -21,4 +21,13 @@ defmodule StoneBankWeb.OperationController do
       |> render("success.json", message: message)
     end
   end
+
+  def exchange(conn, %{"value" => value, "to_currency" => to_currency}) do
+    user = Guardian.Plug.current_resource(conn)
+
+    with {:ok, message} <- Operations.exchange(user.accounts, value, to_currency) do
+      conn
+      |> render("success.json", message: message)
+    end
+  end
 end
