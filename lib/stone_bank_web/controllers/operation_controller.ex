@@ -30,4 +30,13 @@ defmodule StoneBankWeb.OperationController do
       |> render("success.json", message: message)
     end
   end
+
+  def deposit(conn, %{"value" => value}) do
+    user = Guardian.Plug.current_resource(conn)
+
+    with {:ok, message} <- Operations.deposit(user.accounts, value) do
+      conn
+      |> render("success.json", message: message)
+    end
+  end
 end

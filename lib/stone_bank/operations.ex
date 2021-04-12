@@ -6,6 +6,7 @@ defmodule StoneBank.Operations do
   @withdraw "withdraw"
   @transfer "transfer"
   @exchange "exchange"
+  @deposit "deposit"
 
   alias StoneBank.{Accounts, Accounts.Account}
   alias StoneBank.Repo
@@ -23,7 +24,7 @@ defmodule StoneBank.Operations do
     end
   end
 
-  def withdraw_operation(from, value) do
+  defp withdraw_operation(from, value) do
     Ecto.Multi.new()
     |> Ecto.Multi.update(:account_from, perform_operation(from, value, :sub))
     |> Ecto.Multi.insert(:transaction, gen_transaction(value, from.id, nil, @withdraw))
@@ -52,16 +53,26 @@ defmodule StoneBank.Operations do
     end
   end
 
-  def exchange_operation(from, value, to_currency) do
+  defp exchange_operation(from, value, to_currency) do
     {:ok, exchange_value} = Money.to_currency(value, to_currency)
 
     Ecto.Multi.new()
-    |> Ecto.Multi.update(:account_from, perform_exchange_operation(from, value, :sub))
+    |> Ecto.Multi.update(:account_from, perform_operation(from, value, :exchange))
     |> Ecto.Multi.insert(:transaction, gen_transaction(value, from.id, nil, @exchange))
     |> Repo.transaction()
     |> transaction_case(
       "exchange with success!!! from: #{from.id} value: #{value} converted to: #{exchange_value}"
     )
+  end
+
+  def deposit(from, value) do
+    value = Money.new(:brl, value)
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.update(:account_from, perform_operation(from, value, :sum))
+    |> Ecto.Multi.insert(:transaction, gen_transaction(value, from.id, nil, @deposit))
+    |> Repo.transaction()
+    |> transaction_case("deposit with success!!! from: #{from.id} value: #{value}")
   end
 
   defp is_negative_amount?(from_amount, value) do
@@ -99,7 +110,7 @@ defmodule StoneBank.Operations do
     update_account(account, %{amount: value_response_sum})
   end
 
-  defp perform_exchange_operation(account, value, :sub) do
+  defp perform_operation(account, value, :exchange) do
     {:ok, value_response_sub} = Money.sub(account.amount, value)
     update_account(account, %{amount: value_response_sub})
   end
