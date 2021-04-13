@@ -39,4 +39,13 @@ defmodule StoneBankWeb.OperationController do
       |> render("success.json", message: message)
     end
   end
+
+  def split_payment(conn, %{"to_accounts_id" => to_accounts_id, "value" => value}) do
+    user = Guardian.Plug.current_resource(conn)
+
+    with {:ok, message} <- Operations.split_payment(user.accounts, to_accounts_id, value) do
+      conn
+      |> render("success.json", message: message)
+    end
+  end
 end

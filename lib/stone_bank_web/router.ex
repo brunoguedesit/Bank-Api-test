@@ -32,6 +32,7 @@ defmodule StoneBankWeb.Router do
     put "/operations/withdraw", OperationController, :withdraw
     put "/operations/exchange", OperationController, :exchange
     put "/operations/deposit", OperationController, :deposit
+    put "operations/split_payment", OperationController, :split_payment
 
     get "/transactions/all", TransactionController, :all
     get "/transactions/year/:year", TransactionController, :year

@@ -7,6 +7,7 @@ defmodule StoneBank.Accounts.Account do
 
   @primary_key {:id, Ecto.UUID, autogenerate: true}
   @foreign_key_type Ecto.UUID
+  @derive {Jason.Encoder, only: [:amount]}
 
   schema "accounts" do
     field :amount, Money.Ecto.Composite.Type, default: Money.new(:BRL, 1000)

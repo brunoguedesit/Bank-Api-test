@@ -11,7 +11,7 @@ defmodule StoneBankWeb.TransactionView do
         %{
           date: t.date,
           account_from: t.account_from,
-          account_to: t.account_to,
+          accounts_to: t.account_to,
           type: t.type,
           value: t.value
         }
