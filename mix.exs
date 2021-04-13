@@ -79,7 +79,8 @@ defmodule StoneBank.MixProject do
       {:ex_money, "~> 5.0"},
       {:ex_money_sql, "~> 1.0"},
       {:ex_cldr, "~> 2.20"},
-      {:guardian, "~> 1.2"}
+      {:guardian, "~> 1.2"},
+      {:prom_ex, "~> 1.0.1"}
     ]
   end
 

@@ -16,13 +16,16 @@ defmodule StoneBank.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: StoneBank.PubSub},
       # Start the Endpoint (http/https)
-      StoneBankWeb.Endpoint
+      StoneBankWeb.Endpoint,
       # Start a worker by calling: StoneBank.Worker.start_link(arg)
       # {StoneBank.Worker, arg}
+      # Start the PromEx to monitor our application
+      StoneBank.PromEx
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
+
     opts = [strategy: :one_for_one, name: StoneBank.Supervisor]
     Supervisor.start_link(children, opts)
   end

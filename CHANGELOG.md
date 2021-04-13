@@ -2,19 +2,15 @@
 
 ## Unreleasead
 
-## [0.1.1] - 2021-04-10
+## [0.1.2] - 2021-04-10
 ### Added
 
-- add split payment route
-- add split payment function at operations module and controller
-- add transaction and account struct at Jason.Encoder protocol
-
+- add PromEx dependency to use prometheus for monitor our application
+- add PromEx at our children of the start function at application file
+- add PromEx to our project with the command mix prom_ex.gen.config --datasource Prometheus
+- add PromEx plug into our endpoint file
 
 ### Changed
 
-- refactor(transaction_view): change the response for the split payment operation
-- refactor(config): put never value into exchanges_rates_retrievery_every to not exceed our requests into our free plan at OpenExchangesRates api
 
 ### Removed
-
-- removed tuple encoder, because we dont need anymore
