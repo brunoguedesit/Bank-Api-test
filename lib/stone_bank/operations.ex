@@ -62,7 +62,7 @@ defmodule StoneBank.Operations do
     |> Ecto.Multi.insert(:transaction, gen_transaction(value, from.id, nil, @exchange))
     |> Repo.transaction()
     |> transaction_case(
-      "exchange with success!!! from: #{from.id} value: #{value} converted to: #{exchange_value}"
+      "Exchange with success!!! from: #{from.id} value: #{value} converted to: #{exchange_value}"
     )
   end
 
@@ -73,7 +73,7 @@ defmodule StoneBank.Operations do
     |> Ecto.Multi.update(:account_from, perform_operation(from, value, :sum))
     |> Ecto.Multi.insert(:transaction, gen_transaction(value, from.id, nil, @deposit))
     |> Repo.transaction()
-    |> transaction_case("deposit with success!!! from: #{from.id} value: #{value}")
+    |> transaction_case("Deposit with success!!! from: #{from.id} value: #{value}")
   end
 
   def split_payment(from, to_accounts_id, value) do
@@ -103,7 +103,7 @@ defmodule StoneBank.Operations do
     )
     |> Repo.transaction()
     |> transaction_case(
-      "split payment with success!!! from: #{from.id} to: #{to_accounts} value: #{value}"
+      "Split payment with success!!! from: #{from.id} value splited: #{value} for: #{to_accounts}"
     )
   end
 
