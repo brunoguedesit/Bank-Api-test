@@ -141,12 +141,13 @@ defmodule StoneBankWeb.OperationControllerTest do
       conn = put(conn, Routes.operation_path(conn, :exchange), value: 100, to_currency: :EUR)
       result = json_response(conn, 200)
 
+      {:ok, exchange_value} = Money.to_currency(Money.new(:BRL, 100), :EUR)
+
       user = Repo.get(User, user.id) |> Repo.preload(:accounts)
 
-      expected_response =
-        "Exchange with success!!! from: #{user.accounts.id} value: 100,00 BRL converted to: 14,62 €"
-
-      assert expected_response == Map.get(result, "message")
+      assert "Exchange with success!!! from: #{user.accounts.id} value: 100,00 BRL converted to: #{
+               exchange_value
+             }" == Map.get(result, "message")
     end
 
     test "when given more value than user amount for exchange, returns an error", %{conn: conn} do
