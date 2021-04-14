@@ -3,6 +3,7 @@ defmodule StoneBankWeb.OperationControllerTest do
     Operation controller test module
   """
   use StoneBankWeb.ConnCase
+  use ExUnit.Case, async: true
 
   alias StoneBank.Accounts
   alias StoneBank.Accounts.User
@@ -143,7 +144,7 @@ defmodule StoneBankWeb.OperationControllerTest do
       user = Repo.get(User, user.id) |> Repo.preload(:accounts)
 
       expected_response =
-        "Exchange with success!!! from: #{user.accounts.id} value: 100,00 BRL converted to: 14,63 €"
+        "Exchange with success!!! from: #{user.accounts.id} value: 100,00 BRL converted to: 14,62 €"
 
       assert expected_response == Map.get(result, "message")
     end

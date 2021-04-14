@@ -4,7 +4,7 @@ defmodule StoneBankWeb.UserControllerTest do
   """
 
   use StoneBankWeb.ConnCase
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   alias StoneBank.Accounts
   import StoneBank.Accounts.Auth.Guardian
 

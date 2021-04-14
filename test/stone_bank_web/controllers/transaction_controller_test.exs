@@ -3,6 +3,7 @@ defmodule StoneBankWeb.TransactionControllerTest do
     Transaction controller test module
   """
 
+  use ExUnit.Case, async: true
   use StoneBankWeb.ConnCase
 
   alias StoneBank.Accounts
