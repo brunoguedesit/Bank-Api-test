@@ -6,6 +6,8 @@ defmodule StoneBankWeb.UserControllerTest do
   use StoneBankWeb.ConnCase
   use ExUnit.Case, async: true
   alias StoneBank.Accounts
+  alias StoneBank.Accounts.User
+  alias StoneBank.Repo
   import StoneBank.Accounts.Auth.Guardian
 
   @valid_params %{
@@ -48,6 +50,19 @@ defmodule StoneBankWeb.UserControllerTest do
   end
 
   describe "user manipulate" do
+    test "get balance user account", %{conn: conn} do
+      user = create_user(:user)
+      {:ok, token, _} = encode_and_sign(user, %{}, token_type: :access)
+      conn = put_req_header(conn, "authorization", "bearer " <> token)
+      conn = get(conn, Routes.user_path(conn, :balance))
+      result = json_response(conn, 200)
+
+      user = Repo.get(User, user.id) |> Repo.preload(:accounts)
+
+      assert "#{user.accounts.id}" == Map.get(result, "account_id")
+      assert %{"amount" => "1000", "currency" => "BRL"} == Map.get(result, "balance")
+    end
+
     test "when all params are valid, returns an user created", %{conn: conn} do
       user = @valid_params
 

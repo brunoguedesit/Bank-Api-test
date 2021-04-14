@@ -1,4 +1,8 @@
 defmodule StoneBank.AccountsTest do
+  @moduledoc """
+  Accounts test module
+  """
+
   use StoneBank.DataCase
 
   alias StoneBank.Accounts
@@ -23,7 +27,7 @@ defmodule StoneBank.AccountsTest do
 
   describe "user accounts" do
     test "where all params are valid, returns an user" do
-      {:ok, %User{id: user_id}, account} = Accounts.create_user(@valid_params)
+      {:ok, %User{id: user_id}, _} = Accounts.create_user(@valid_params)
       user = Repo.get(User, user_id)
 
       assert "test" == Map.get(user, :first_name)

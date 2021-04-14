@@ -1,4 +1,7 @@
 defmodule StoneBankWeb.PageControllerTest do
+  @moduledoc """
+  page controller test module
+  """
   use StoneBankWeb.ConnCase
 
   test "GET /", %{conn: conn} do
