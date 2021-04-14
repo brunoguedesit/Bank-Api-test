@@ -143,7 +143,7 @@ defmodule StoneBankWeb.OperationControllerTest do
       user = Repo.get(User, user.id) |> Repo.preload(:accounts)
 
       expected_response =
-        "Exchange with success!!! from: #{user.accounts.id} value: 100,00 BRL converted to: 14,64 €"
+        "Exchange with success!!! from: #{user.accounts.id} value: 100,00 BRL converted to: 14,63 €"
 
       assert expected_response == Map.get(result, "message")
     end
