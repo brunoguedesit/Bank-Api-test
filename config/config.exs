@@ -9,11 +9,11 @@ use Mix.Config
 
 config :stone_bank, StoneBank.Accounts.Auth.Guardian,
   issuer: "stone_bank",
-  secret_key: System.get_env("GUARDIAN_SECRET")
+  secret_key: "zn8BUXbpx1/pojZtWOPjexNPcgzb4tt2T7POWoJPctQ8/PruizveqORpTVCYDtD7"
 
 config :ex_money,
   auto_start_exchange_rate_service: true,
-  open_exchange_rates_app_id: "9e2654ed6bde48c1a1725da9c678d2f0",
+  open_exchange_rates_app_id: "b609b494ff204b5f8e8e708454b3ea58",
   exchange_rates_retrieve_every: :never,
   api_module: Money.ExchangeRates.OpenExchangeRates,
   callback_module: Money.ExchangeRates.Callback,
