@@ -35,6 +35,14 @@ defmodule StoneBankWeb.UserController do
     |> render("show.json", %{user: user})
   end
 
+  def balance(conn, _) do
+    user = Guardian.Plug.current_resource(conn)
+    account = Accounts.get!(user.accounts.id)
+
+    conn
+    |> render("balance.json", %{user: user, account: account})
+  end
+
   defp verify_permission(conn, _) do
     user = Guardian.Plug.current_resource(conn)
 

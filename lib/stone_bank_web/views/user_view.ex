@@ -1,6 +1,13 @@
 defmodule StoneBankWeb.UserView do
   use StoneBankWeb, :view
 
+  def render("balance.json", %{account: account}) do
+    %{
+      balance: account.amount,
+      account_id: account.id
+    }
+  end
+
   def render("account.json", %{user: user, account: account}) do
     %{
       balance: account.amount,

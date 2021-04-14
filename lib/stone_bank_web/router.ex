@@ -27,6 +27,7 @@ defmodule StoneBankWeb.Router do
 
     get "/user", UserController, :show
     get "/users", UserController, :index
+    get "/balance", UserController, :balance
 
     put "/operations/transfer", OperationController, :transfer
     put "/operations/withdraw", OperationController, :withdraw
