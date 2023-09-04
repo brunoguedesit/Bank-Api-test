@@ -1,4 +1,4 @@
-# StoneBank
+# Bank Api test
 
 [![Build Status](https://travis-ci.com/brunoguedesit/stone_bank.svg?token=ywpRyjxy3UtUGfJLcssT&branch=main)](https://travis-ci.com/brunoguedesit/stone_bank)
 [![codecov](https://codecov.io/gh/brunoguedesit/stone_bank/branch/main/graph/badge.svg?token=L43T9NE2PC)](https://codecov.io/gh/brunoguedesit/stone_bank)
